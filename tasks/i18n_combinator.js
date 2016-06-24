@@ -25,65 +25,91 @@ module.exports = function(grunt) {
       outputPrefix: '',
     });
 
-    var combined = [];
+    var self = this;
+    var target = this.target.split('_')[0];
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function (f) {
-      // Concat specified files.
-      grunt.log.writeln(f.src);
-      var src = f.src.filter(function (filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
+    if (target === 'combinator') {
+
+      // Iterate over all specified file groups.
+      this.files.forEach(function (f) {
+        // Concat specified files.
+        grunt.log.writeln(f.src);
+        var src = f.src.filter(function (filepath) {
+          // Warn on and remove invalid source files (if nonull was set).
+          if (!grunt.file.exists(filepath)) {
+            grunt.log.warn('Source file "' + filepath + '" not found.');
+            return false;
+          } else {
+            return true;
+          }
+
+        }).map(function (filepath) {
+          // Read file source.
+          var data = grunt.file.read(filepath);
+          grunt.log.writeln(data);
+          var out = {};
+          var name = path.basename(filepath, path.extname(filepath));
+          out[name] = ic.combine(data);
+          return out;
+        });
+
+        // Handle options.
+        //src += options.punctuation;
+        if (!options.multiple) {
+
+          var data = ic.combineOutput(src);
+          var dest = f.dest + options.jsonFile;
+          grunt.file.write(dest, ic.toJSON(data));
+          grunt.log.writeln('File "' + options.jsonFile + '" created.');
+
         } else {
-          return true;
-        }
-
-      }).map(function (filepath) {
-        // Read file source.
-        var data = grunt.file.read(filepath);
-        grunt.log.writeln(data);
-        var out = {};
-        var name = path.basename(filepath, path.extname(filepath));
-        out[name] = ic.combine(data);
-        return out;
-      });
-
-      // Handle options.
-      //src += options.punctuation;
-      if (!options.multiple) {
-
-        var data = ic.combineOutput(src);
-        var dest = f.dest + options.jsonFile;
-        grunt.file.write(dest, ic.toJSON(data));
-        grunt.log.writeln('File "' + options.jsonFile + '" created.');
-
-      } else {
-        // Write the destination file.
-        for (var key in src) {
-          var block = src[key];
-          for (var key2 in block) {
-            var name = options.outputPrefix + key2 + options.outputSuffix;
-            var dest = f.dest + name + '.json';
-            grunt.file.write(dest, ic.toJSON(block[key2]));
-            grunt.log.writeln('File "' + dest + '" created.');
+          // Write the destination file.
+          for (var key in src) {
+            var block = src[key];
+            for (var key2 in block) {
+              var name = options.outputPrefix + key2 + options.outputSuffix;
+              var dest = f.dest + name + '.json';
+              grunt.file.write(dest, ic.toJSON(block[key2]));
+              grunt.log.writeln('File "' + dest + '" created.');
+            }
           }
         }
-      }
+      });
 
-    });
+    } else if (target === 'mergator') {
 
-    if (combined.length > 0) {
-      var out = ic.combineOutput(combined);
+      // Iterate over all specified file groups.
+      this.files.forEach(function (f) {
+        // Concat specified files.
+        grunt.log.writeln(f.src);
+        var src = f.src.filter(function (filepath) {
+          // Warn on and remove invalid source files (if nonull was set).
+          if (!grunt.file.exists(filepath)) {
+            grunt.log.warn('Source file "' + filepath + '" not found.');
+            return false;
+          } else {
+            return true;
+          }
 
-      // Write the destination file.
-      grunt.file.write(options.jsonFile, src);
+        }).map(function (filepath) {
+          // Read file source.
+          var data = grunt.file.read(filepath);
+          var out = {}
+          var name = path.basename(filepath, path.extname(filepath));
+          out[name] = ic.convertObject(data);
+          return out;
+        });
 
-      // Print a success message.
-      grunt.log.writeln('File "' + options.jsonFile + '" created.');
+        var data = ic.combineOutput(src);
+        grunt.file.write(f.dest, ic.toJSON(data));
+        grunt.log.writeln('File "' + f.dest + '" created.');
+
+      });
+
+    } else {
+      grunt.log.error('Invalid target: ' + this.target);
+      return false;
     }
-
   });
 
 };

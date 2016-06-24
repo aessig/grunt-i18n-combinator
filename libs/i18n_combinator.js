@@ -53,6 +53,10 @@ exports.combineOutput = function (array2combine) {
   return dat;
 };
 
+exports.convertObject = function (file) {
+  return JSON.parse(file);
+};
+
 exports.toJSON = function (obj) {
   return JSON.stringify(obj, null, 4);
 };

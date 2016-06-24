@@ -50,6 +50,14 @@ module.exports = function (grunt) {
           { src: 'test/fixtures/json/*.json', dest: 'test/fixtures/output/' }
         ],
       },
+      mergator: {
+        files: [
+          /**
+          * All JSON FILES TO BE MERGE
+          */
+          { src: 'test/fixtures/json/*.json', dest: 'test/fixtures/output/i18n_merged_file.json' }
+        ],
+      },
     },
 
   });
