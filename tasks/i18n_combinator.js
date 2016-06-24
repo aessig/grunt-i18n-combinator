@@ -21,6 +21,8 @@ module.exports = function(grunt) {
     var options = this.options({
       multiple: true,
       jsonFile: 'i18n_combined.json',
+      outputSuffix: '',
+      outputPrefix: '',
     });
 
     var combined = [];
@@ -62,7 +64,8 @@ module.exports = function(grunt) {
         for (var key in src) {
           var block = src[key];
           for (var key2 in block) {
-            var dest = f.dest + key2 + ".json";
+            var name = options.outputPrefix + key2 + options.outputSuffix;
+            var dest = f.dest + name + '.json';
             grunt.file.write(dest, ic.toJSON(block[key2]));
             grunt.log.writeln('File "' + dest + '" created.');
           }

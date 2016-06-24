@@ -6,20 +6,20 @@
  * Licensed under the MIT license.
  */
 
-"use strict";
+'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
     jshint: {
       all: [
-        "Gruntfile.js",
-        "tasks/*.js",
+        'Gruntfile.js',
+        'tasks/*.js',
       ],
       options: {
-        jshintrc: ".jshintrc"
-      }
+        jshintrc: '.jshintrc'
+      },
     },
 
     // Configuration to be run (and then tested).
@@ -27,7 +27,15 @@ module.exports = function(grunt) {
       combinator: {
         options: {
           /*
-          * If you want a single file set to "false"
+          * Only Work if multiple == true. Set output file suffix
+          */
+          outputSuffix: '',
+          /*
+          * Only Work if multiple == true. Set output file prefix
+          */
+          outputPrefix: '',
+          /*
+          * If you want a single file set to 'false'
           */
           multiple: true,
           /*
@@ -39,26 +47,27 @@ module.exports = function(grunt) {
           /**
           * Put all your .js files schema in here
           */
-          { src: "test/fixtures/json/*.json", dest: "test/fixtures/output/" }
+          { src: 'test/fixtures/json/*.json', dest: 'test/fixtures/output/' }
         ],
       },
     },
 
   });
 
-  // Actually load this plugin"s task(s).
-  grunt.loadTasks("tasks");
+  // Actually load this plugin's task(s).
+  grunt.loadTasks('tasks');
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks("grunt-contrib-jshint");
-  // grunt.loadNpmTasks("grunt-contrib-clean");
-  // grunt.loadNpmTasks("grunt-contrib-nodeunit");
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin"s task(s), then test the result.
-  // grunt.registerTask("test", ["clean", "i18n_combinator", "nodeunit"]);
+  // grunt.loadNpmTasks('grunt-contrib-clean');
+  // grunt.loadNpmTasks('grunt-contrib-nodeunit');
+
+  // Whenever the 'test' task is run, first clean the 'tmp' dir, then run this
+  // plugin's task(s), then test the result.
+  // grunt.registerTask('test', ['clean', 'i18n_combinator', 'nodeunit']);
 
   // By default, lint and run all tests.
-  // grunt.registerTask("default", ["jshint", "test"]);
+  // grunt.registerTask('default', ['jshint', 'test']);
 
 };
