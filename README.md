@@ -67,32 +67,19 @@ A string value that is used to do something with whatever.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+#### Combinator
 
 ```js
 grunt.initConfig({
   i18n_combinator: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  i18n_combinator: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+    combinator: {
+      options: {
+        multiple: true,
+        jsonFile: 'i18n_combined.json',
+      },
+      files: [
+        { src: 'test/fixtures/json/*.json', dest: 'test/fixtures/output/' },
+      ],
     },
   },
 });
