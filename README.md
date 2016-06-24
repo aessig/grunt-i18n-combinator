@@ -69,6 +69,8 @@ A string value that is used to do something with whatever.
 
 #### Combinator
 
+Allow to combine multiple JSON file based on this structure (see file [test.json](test/fixtures/json/test.json))
+
 ```js
 grunt.initConfig({
   i18n_combinator: {
@@ -79,6 +81,22 @@ grunt.initConfig({
       },
       files: [
         { src: 'test/fixtures/json/*.json', dest: 'test/fixtures/output/' },
+      ],
+    },
+  },
+});
+```
+
+#### Mergator
+
+Allow to merge JSON files
+
+```js
+grunt.initConfig({
+  i18n_combinator: {
+    mergator: {
+      files: [
+        { src: 'test/fixtures/json/*.json', dest: 'test/fixtures/output/output.json' },
       ],
     },
   },
