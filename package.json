@@ -1,0 +1,41 @@
+{
+  "name": "grunt-i18n-combinator",
+  "description": "Combine SimpleSchema i18n files for each schema",
+  "version": "0.1.4",
+  "homepage": "https://github.com/aessig/grunt-i18n-combinator",
+  "author": {
+    "name": "aessig",
+    "email": "auressig@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aessig/grunt-i18n-combinator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aessig/grunt-i18n-combinator/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/aessig/grunt-i18n-combinator/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}

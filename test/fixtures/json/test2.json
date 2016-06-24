@@ -1,0 +1,22 @@
+{
+  "ProfileB": {
+    "username": {
+      "label": "Username"
+    },
+    "availability": {
+      "nested": "_availability",
+      "label": "Availability"
+    }
+  },
+  "_availability": {
+    "monday": {
+      "label": "Monday"
+    },
+    "tuesday": {
+      "label": "Tuesday"
+    },
+    "wednesday": {
+      "label": "Wednesday"
+    }
+  }
+}

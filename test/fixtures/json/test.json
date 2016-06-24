@@ -1,0 +1,49 @@
+{
+  "ProfileA": {
+    "username": {
+      "label": "Username"
+    },
+    "availability": {
+      "nested": "_availability",
+      "label": "Availability"
+    }
+  },
+  "_availabilityTime": {
+    "startTime": {
+      "placeholder": "From"
+    },
+    "stopTime": {
+      "placeholder": "To"
+    }
+  },
+  "_availability": {
+    "monday": {
+      "nested": "_availabilityTime",
+      "label": "Monday"
+    },
+    "tuesday": {
+      "nested": "_availabilityTime",
+      "label": "Tuesday"
+    },
+    "wednesday": {
+      "nested": "_availabilityTime",
+      "label": "Wednesday"
+    },
+    "thursday": {
+      "nested": "_availabilityTime",
+      "label": "Thursday"
+    },
+    "friday":{
+      "nested": "_availabilityTime",
+      "label": "Friday"
+    },
+    "saturday": {
+      "nested": "_availabilityTime",
+      "label": "Saturday"
+    },
+    "sunday": {
+      "nested": "_availabilityTime",
+      "label": "Sunday"
+    }
+  }
+}
