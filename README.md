@@ -37,17 +37,33 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+#### options.outputSuffix
 Type: `String`
-Default value: `',  '`
+Default value: `''`
 
+Only Work if multiple == true. Set output file suffix
 A string value that is used to do something with whatever.
 
-#### options.punctuation
+#### options.outputPrefix
 Type: `String`
-Default value: `'.'`
+Default value: `''`
 
-A string value that is used to do something else with whatever else.
+Only Work if multiple == true. Set output file prefix
+A string value that is used to do something with whatever.
+
+#### options.multiple
+Type: `Boolean`
+Default value: `false`
+
+If you want a single file set to 'false'
+A string value that is used to do something with whatever.
+
+#### options.jsonFile
+Type: `String`
+Default value: `i18n_combined.json`
+
+If you want a single file here is define the name of the output file
+A string value that is used to do something with whatever.
 
 ### Usage Examples
 
